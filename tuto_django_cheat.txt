@@ -1,0 +1,65 @@
+pip install django
+-- add django-admin path to environment variables
+django-admin start-project password_generator
+cd password_generator
+python manage.py runserver
+
+Structure 
+PS D:\Git\password_generator-project> dir
+
+
+    Répertoire : D:\Git\password_generator-project
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----       10/01/2021     10:20                password_generator
+-a----       10/01/2021     10:20              0 db.sqlite3 // contains db
+-a----       10/01/2021     10:18            696 manage.py // django manager
+
+
+PS D:\Git\password_generator-project\password_generator> dir
+
+
+    Répertoire : D:\Git\password_generator-project\password_generator
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----       10/01/2021     10:20                __pycache__
+-a----       10/01/2021     10:18            429 asgi.py // for Prod deployement
+-a----       10/01/2021     10:18           3218 settings.py
+-a----       10/01/2021     10:18            781 urls.py
+-a----       10/01/2021     10:18            429 wsgi.py // for Prod deployement
+-a----       10/01/2021     10:18              0 __init__.py
+
+Django projects
+	-app1
+	-app2
+	...
+	
+
+#To create a new generator app
+python manage.py  startapp generator
+Under password_generator>>settings add an INSTALLED_APPS named generator
+
+#To create a new urls
+- Declare it under password_generator>>urls
+	path('', views.home), // required 'from generator import views'
+- Create the home function under generator>>views
+
+
+#To update database (in case a new app)
+python .\manage.py migrate
+
+#To take into account a new model
+PS D:\Git\django\personal_potfolio_project> python .\manage.py makemigrations
+Migrations for 'portfolio':
+  portfolio\migrations\0001_initial.py
+    - Create model Project
+PS D:\Git\django\personal_potfolio_project>  python .\manage.py migrate
+	
+#To Create admin users and set up password
+ python .\manage.py createsuperuser
+	(admin/admin)
+python manage.py changepassword admin

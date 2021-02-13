@@ -1,0 +1,25 @@
+<h1>Test1</h1>
+{% load static %}
+
+<!-- <img src="{% static 'portfolio/00425243.jpg' %}">  -->
+<a href="{% static 'Billet Romain.pdf' %}">toto</a>
+<img src="{% static '00425243.jpg' %}"> 
+
+<a href="{% url 'blog:home_blogs' %}">Liste of blogs</a>
+
+{% for project in project_list %}
+
+Title : {{ project.title }} 
+<br>
+Description : {{ project.description }}
+<br>
+Image : {{ project.image }}
+<img class="fit-picture"
+     src={{ project.image.url }}
+     alt="Grapefruit slice atop a pile of other slices" ,height=100, width=100>
+<br>
+Url : <a href="{{ project.url }}">{{ project.url }}</a>
+
+<br>
+
+{% endfor %}
